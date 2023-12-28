@@ -1,0 +1,54 @@
+.profile-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem;
+    margin: 0 7rem;
+}
+.right-profile{
+    display: flex;
+    width: 50%;
+}
+.profile-side img{
+    height: 80px;
+}
+.info-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 1.5rem;
+}
+.login-btn{
+        padding: 0.5rem;
+        border-radius: 13px;
+        width: 8rem;
+        height: 2.5rem;
+        background-color: white;
+        border-color: blue;
+        font-size: 15px;
+}
+
+.lists{
+    padding: 1.5rem 4rem;
+    margin: 0 7rem;
+}
+ul{
+    line-height: 50px;
+}
+a{
+    display: block;
+    color: rgb(75, 75, 75);
+     margin-right: 10px;
+}
+a:hover{
+    color: orangered;
+
+}
+li{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+li img{
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,72 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    margin: 2rem auto;
+    max-width: 30rem;
+    padding: 2rem ;
+    padding-top: 1rem;
+    line-height: 2.5rem;
+    box-shadow: 4px 3px 8px 0 rgba(0,0,0,.1);
+}
+.login-form .form form input{
+    width: 100%;
+    border-radius: 7px;
+    border-color: #dee5e5;
+    height: 3rem;
+    margin-bottom: 1.5rem;
+}
+.login-form .form form input:focus{
+    background-color: gainsboro;
+}
+.form-describtion{
+    margin-bottom: 1rem;
+}
+.form-describtion h1{
+    margin: 0;
+    font-size: 20px;
+}
+.form-describtion ul{
+  display: flex;
+}
+.form-describtion ul li a{
+    font-size: 1.5rem;
+    color: black;
+    transition: all 0.9s;
+    -webkit-transition: all 0.9s;
+    -moz-transition: all 0.9s;
+    -ms-transition: all 0.9s;
+    -o-transition: all 0.9s;
+}
+  .form-describtion ul li a:hover{
+    color: orangered;
+  }
+.form-describtion p{
+    margin: 0;
+    font-size: 17px;
+}
+.lable{
+    font-size: 14px;
+}
+.blue-btn{
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    margin-top: 1.5rem;
+    height: 3rem;
+}
+.span{
+    margin: 0 0.5rem;
+}
+.form #input{
+    font-size: 20px;
+    color: #333;
+    font-family: 'Shabnam';
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: 0;
+}
+.form #input:focus {
+    border-color:  #007bff;
+  }
