@@ -37,12 +37,12 @@
                     </form>
                 </div>
             </div>
-            <div class="middleprofile">
+            <div class="middleprofile d-flex">
                 <div class="profile_img">
                 <img src="./assets/img/gtr.jpg">
                 </div>
-                <div class="ad_count_num">
-                    <div>
+                <div class="ad_count_num d-flex">
+                    <div class="count_image">
                         <a>
                         <img src="./assets/img/icons8-pass-fail-64.png">
                         </a>
@@ -55,8 +55,15 @@
                 </div>
 
             </div>
-            <div class="">
+            <div class="adverts_cards">
+                    <div class="ad_cr_title">
+                        <h1>آگهی های من</h1>
+                    </div>
+                    <div class="no_ad_image">
+                        <img src="./assets/img/—Pngtree—no result search icon_6511543.png" >
+                        <a herf="#">ثبت آگهی جدید</a>
 
+                    </div>
             </div>
           
         </div>
