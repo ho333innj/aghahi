@@ -1,3 +1,5 @@
+<?PHP include('codes/authenticationCode.php');?>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -6,34 +8,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سایت آگهی و فروش nj</title>
     <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/login.css">
 </head>
 
 <body>
-<?php  include __DIR__."../views/templates/header.php";?>
+    <?php include __DIR__ . "../views/templates/header.php"; ?>
 
-        <div class="main-container Shabnam">
-            <div class="login-form">
-                    <div class="form-describtion">
-                        <ul>
-                            <li ><a href="#">ورود</a></li><span class="span">/</span>
-                            <li ><a href="#">ثبت نام</a></li>
-                        </ul>
-                        <p class="title-2">لطفا برای ورود نام کاربری و کلمه عبور خود را وارد کنید.</p>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>فرم ورود</title>
+        <link rel="stylesheet" href="styles.css"> <!-- اتصال به فایل CSS -->
+    </head>
+
+    <body>
+        <div class="login">
+
+            <div class="form-half">
+                <div class="head-form">
+                    <h2>ورود</h2>
+                    <p><a href="register.php">هنوز ثبت‌نام نکرده‌اید؟</a></p>
+                </div>
+                <form method="POST">
+                    <div class="input-group">
+                        <label for="email">ایمیل:</label><br>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="form">
-                        <form action="/action_page.php">
-                            <label for="username" class="lable"> نام کاربری:</label><br>
-                            <input type="text" id="input" name="username" value=""><br>
-                            <label for="password" class="lable">کلمه عبور:</label><br>
-                            <input type="password" id="input" name="password" value=""><br>
-                            <input type="submit" value="ورود" style="margin-top: 2.5rem" class="blue-btn Shabnam">
-                        </form>
+                    <div class="input-group">
+                        <label for="password">رمز عبور:</label><br>
+                        <input type="password" id="password" name="password" required>
                     </div>
+                    <input type="submit" value="ورود" class="btn" name="login_btn">
+                    <p><a href="register.php">ثبت نام</a></p>
+                </form>
+            </div>
+            <div class="image-half">
+                <img src="./assets/img/greens.png" alt="عکس">
             </div>
         </div>
-       
-    </div>
-    
-<?php  include __DIR__."../views/templates/footer.php";?>  
+
+    </body>
+
+
+    </html>
+
+
+    <?php include __DIR__ . "../views/templates/footer.php"; ?>
 </body>
+
 </html>

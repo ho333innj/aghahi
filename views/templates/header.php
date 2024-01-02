@@ -7,14 +7,14 @@
             <img src="./assets/img/kisspng-gray-wolf-moon-coyote-red-wolf-clip-art-wolf-5ab44881d4b9a9.0979797015217644818713.png">
         </div>
         <div class="logo-text Shabnam">
-            <a>آگهی وفروش </a>
+            <a href="<?php  base_url('index.php');?>">آگهی وفروش </a>
         </div>
     </div>
     <div>
     <ul>
             <li>
             <img src="./assets/img/icons8-home-40.png">
-                <a href="#">صفحه اصلی</a>
+                <a href="<?php  base_url('index.php');?>">صفحه اصلی</a>
             </li>
             <li>
             <img src="./assets/img/icons8-star-40.png">
@@ -35,11 +35,12 @@
             <ul>
             <li>
             <img src="./assets/img/icons8-test-account-40.png">
-                <a href="#">  ورود / ثبت نام</a>
+                <a href="<?php base_url('login.php');?>">  ورود / ثبت نام</a>
             </li>
             <li>
-                <a href="#" class="ad-reg-btn"> + ثبت آگهی</a>
+                <a href="<?php base_url('insertAdvert.php');?>" class="ad-reg-btn"> + ثبت آگهی</a>
             </li>
             </ul>
     </div>
 </header>
+<?php include('message.php') ?>

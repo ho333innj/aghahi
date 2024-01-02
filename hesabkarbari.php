@@ -1,3 +1,13 @@
+<?PHP 
+include('codes/authenticationCode.php');
+include('controller/AuthenticationController.php');
+if (session_status() === PHP_SESSION_NONE)
+ {
+    session_start();
+ }
+        $authenticated->IsLoggedIn();
+        ?>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -9,10 +19,13 @@
 </head>
 
 <body>
-<?php  include __DIR__."../views/templates/header.php";?>
+<?php  include __DIR__."/views/templates/header.php";?>  
+
 
     <div class="container">
+
         <div class="main-container Shabnam">
+
             <div class="topprofile_index">
                 <div class="tp_lists">
                     <ul>
@@ -32,7 +45,7 @@
                 </div>
                 <div class="tp_geetingandlogout">
                     <p class="text-w">خوش آمدید : حسین جان</p>
-                    <form>
+                    <form method="POST">
                         <input type="submit" value="خروج" name="logout_btn">
                     </form>
                 </div>
@@ -68,6 +81,6 @@
           
         </div>
     </div>
-    <?php  include __DIR__."../views/templates/footer.php";?>  
+    <?php  include __DIR__."/views/templates/footer.php";?>  
 </body>
 </html>

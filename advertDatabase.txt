@@ -1,0 +1,71 @@
+create database advert character set utf8mb4 collate utf8mb4_persian_ci;
+use advert;
+
+create table users
+(UserID int primary key auto_increment, Role_ID int, UserName varchar(30) not null,Email varchar(30) not null,Mobile varchar(11) not null, UserState varchar(10) default 'active');
+
+create table Roles
+(RoleID int primary key auto_increment, RoleName varchar(25));
+alter table Users add foreign key(Role_ID) references Roles(RoleID);
+
+
+create table Permissions
+(PermissionID int primary key auto_increment, PermissionName varchar(25));
+
+
+create table Role_Permission
+(RPID int primary key auto_increment, Role_ID int, Permission_ID int,
+foreign key (Role_ID)references Roles(RoleID) on update cascade on delete set null,
+foreign key (Permission_ID)references Permissions(PermissionID) on update cascade on delete set null);
+
+
+create table cities
+(CityID int auto_increment, CityName varchar(25) , primary key(CityID));
+
+
+create table categories
+(CategoryID int primary key auto_increment, CategoryName varchar(25));
+
+create table Adverts
+(AdvertID int primary key auto_increment, City_ID int(11),User_ID int(11),Category_ID int(11),Title varchar(50)not null, Description text, Price int,AdvertState varchar(10),
+foreign key(City_ID)references cities (CityID)on update cascade on delete set null,
+foreign key(Category_ID) references Categories(CategoryID)on update cascade on delete set null,
+foreign key (User_ID)references Users(UserID)on update cascade on delete set null);
+
+
+
+insert into Roles(RoleID,RoleName)
+values(null,'admin'),
+	(null,'manager'),
+	(null,'user');
+
+insert into Permissions (PermissionID, PermissionName)
+values (null, 'insert'),
+	(null,'edit'),
+	(null,'delete'),
+	(null,'view');
+
+insert into Users (UserID, Role_ID, UserName , Email , Mobile)
+values (null, 1,'hossein','hosseinnajafi1374azarazar@gmail.com','09394664966');
+
+insert into Cities  (CityID, CityName)
+values (null , 'zanjan'),
+	(null , 'tehran');
+
+insert into Categories  (CategoryID, CategoryName)
+values (null , 'home'),
+ (null , 'car');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

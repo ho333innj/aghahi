@@ -1,3 +1,11 @@
+<?php 
+// include('config/app.php');
+include('codes/authenticationCode.php');
+if (session_status() === PHP_SESSION_NONE)
+{
+   session_start();
+} ?>
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -9,11 +17,12 @@
 </head>
 
 <body>
-<?php  include __DIR__."../views/templates/header.php";?>
 
 
     <div class="container">
         <div class="main-container Shabnam">
+        <?php  include __DIR__."/views/templates/header.php";?>
+
             <div class="title">
                 <div class="title-icon">
                     <img src="./assets/img/TransitArts_Logo.png" class="black-white">
@@ -55,6 +64,6 @@
     </div>
 
 
-<?php  include __DIR__."../views/templates/footer.php";?>  
+<?php  include __DIR__."/views/templates/footer.php";?>  
 </body>
 </html>

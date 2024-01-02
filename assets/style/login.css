@@ -1,72 +1,170 @@
-.login-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgb(255, 255, 255);
-    margin: 2rem auto;
-    max-width: 30rem;
-    padding: 2rem ;
-    padding-top: 1rem;
-    line-height: 2.5rem;
-    box-shadow: 4px 3px 8px 0 rgba(0,0,0,.1);
-}
-.login-form .form form input{
+
+.login {
+    /*width: 50%;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    */display: flex;
+    flex-direction: row;
     width: 100%;
-    border-radius: 7px;
-    border-color: #dee5e5;
-    height: 3rem;
-    margin-bottom: 1.5rem;
+    height: 100vh;
+    font-family: "Shabnam";
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    opacity: 0;
+    animation: fadeIn 5s forwards;
+    -webkit-animation: fadeIn 5s forwards;
+
 }
-.login-form .form form input:focus{
-    background-color: gainsboro;
-}
-.form-describtion{
-    margin-bottom: 1rem;
-}
-.form-describtion h1{
-    margin: 0;
-    font-size: 20px;
-}
-.form-describtion ul{
-  display: flex;
-}
-.form-describtion ul li a{
-    font-size: 1.5rem;
-    color: black;
-    transition: all 0.9s;
-    -webkit-transition: all 0.9s;
-    -moz-transition: all 0.9s;
-    -ms-transition: all 0.9s;
-    -o-transition: all 0.9s;
-}
-  .form-describtion ul li a:hover{
-    color: orangered;
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
   }
-.form-describtion p{
-    margin: 0;
-    font-size: 17px;
-}
-.lable{
-    font-size: 14px;
-}
-.blue-btn{
-    background-color: blue;
-    color: white;
-    font-size: 20px;
-    margin-top: 1.5rem;
-    height: 3rem;
-}
-.span{
-    margin: 0 0.5rem;
-}
-.form #input{
-    font-size: 20px;
+
+h2 {
+    text-align: center;
     color: #333;
-    font-family: 'Shabnam';
-    padding: 10px;
-    border: 1px solid #ccc;
-    outline: 0;
 }
-.form #input:focus {
-    border-color:  #007bff;
-  }
+form {
+    /* text-align: center; */
+
+}
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+input[type="submit"],
+input[type="tel"],
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+    
+}
+.input-group input{
+    font-family: "Shabnam";
+    font-size: 15px;
+    outline: none; /* حذف حاشیه فعال شدن */
+}
+/* استایل برای focus بر روی input */
+.input-group input:focus {
+    border-color: none; /* تغییر رنگ border هنگام focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* اضافه کردن سایه هنگام focus */
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+/* نصف اول (فرم) */
+.form-half {
+    width: 50%;
+    padding: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+/* نصف دوم (عکس) */
+.image-half {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 0 8px 8px 0;
+    overflow: hidden;
+    -webkit-border-radius: 0 8px 8px 0;
+    -moz-border-radius: 0 8px 8px 0;
+    -ms-border-radius: 0 8px 8px 0;
+    -o-border-radius: 0 8px 8px 0;
+}
+
+/* استایل عکس */
+.image-half img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+}
+
+/* استایل برای label ها درون input-group */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #777;
+}
+.head-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.btn{
+    font-family: "shabnam";
+    font-size: 15px;
+}
+/* مثالی از استفاده از Media Queries */
+@media screen and (max-width: 768px) {
+    .form-half, .image-half {
+        width: 100%; /* تغییر عرض نصف فرم */
+        border-radius: 0; /* حذف شیب گوشه‌ها */
+    }
+    /* ... تغییرات دیگر برای موقعیت‌بندی و استایل دیگر */
+}

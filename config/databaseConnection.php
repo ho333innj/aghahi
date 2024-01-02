@@ -8,7 +8,6 @@ class databaseConnection
         {
             die('<h1>database connection failed</h1>');
         }
-        echo 'database connection successfully';
         return $this->conn = $conn;
     }
 }
