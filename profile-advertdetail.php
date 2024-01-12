@@ -8,7 +8,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include('codes/AdvertCode.php');
-
+if (!$authenticated->IsLoggedIn()) {
+    // Redirect to the login page or any other page you prefer
+    redirect("لطفاً وارد شوید", "login.php");
+}
 // include 'controller/advertController.php';
 
 // Get all adverts
@@ -55,10 +58,8 @@ $adverts = $advert->alladvertShow();
                                 <img src="./assets/img/share.png">
                             </div>
                             <div>
-                            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                    <input type="hidden" name="editAdvert" value="<?php echo htmlspecialchars($advertDetails['AdvertID'], ENT_QUOTES, 'UTF-8'); ?>">
-                                    <button type="submit" style="color:green !important;">ویرایش آگهی</button>
-                            </form>                                <img src="./assets/img/save-instagram.png">
+                            <a href="editadvert.php?id=<?php echo htmlspecialchars($advertID, ENT_QUOTES, 'UTF-8'); ?>" style="color:green !important;">ویرایش آگهی</a>
+                            <img src="./assets/img/save-instagram.png">
                             </div>
                         </div>
 

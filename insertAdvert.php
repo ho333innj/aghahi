@@ -3,7 +3,10 @@
 include('codes/AdvertCode.php');
 
 if (session_status() === PHP_SESSION_NONE){session_start();}
-
+if (!$authenticated->IsLoggedIn()) {
+    // Redirect to the login page or any other page you prefer
+    redirect("لطفاً وارد شوید", "login.php");
+}
 // $data = $authenticated->authDetail();
     
 ?>

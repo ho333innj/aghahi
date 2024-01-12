@@ -115,6 +115,26 @@ class AdvertController
         return false; // Update failed
     }
 }
+public function searchAdverts($searchQuery)
+{
+    // Assuming you have a table named 'adverts'
+    $searchAdverts = "SELECT * FROM adverts WHERE title LIKE '%$searchQuery%' OR description LIKE '%$searchQuery%'";
+    $result = $this->conn->query($searchAdverts);
+
+    if ($result->num_rows > 0) {
+        $searchResults = array();
+
+        // Fetch each row as an associative array
+        while ($advert = $result->fetch_assoc()) {
+            // Append the row to the array
+            $searchResults[] = $advert;
+        }
+
+        return $searchResults;
+    } else {
+        return false; // No results found
+    }
+}
    
     
 }

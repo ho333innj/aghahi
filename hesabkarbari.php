@@ -5,7 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 // include('codes/AdvertCode.php');
-
+if (!$authenticated->IsLoggedIn()) {
+    // Redirect to the login page or any other page you prefer
+    redirect("لطفاً وارد شوید", "login.php");
+}
 $data = $authenticated->authDetail();
 $user_id = $data['UserID'];
 $UserName=$data['UserName'];

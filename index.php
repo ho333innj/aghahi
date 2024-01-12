@@ -8,6 +8,11 @@ include 'controller/advertController.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (isset($_GET['query'])) {
+    $searchQuery = mysqli_real_escape_string($advert->conn, $_GET['query']);
+    $searchResults = $advert->searchAdverts($searchQuery);
+}
+
 $adverts = $advert->alladvertShow();
 ?>
 
@@ -29,26 +34,28 @@ $adverts = $advert->alladvertShow();
 
 
     <div class="container">
-    <div class="search-box">
-    <input type="text" class="search-input" placeholder="جستجو در آگهی ها ...">
-    <div class="select-box">
-        <select name="category">
-        <option value="" disabled selected>دسته بندی :</option>
-            <option value="category1">وسایل نقلیه</option>
-            <option value="category2">وسایل نقلیه</option>
-            <!-- Add more categories as needed -->
-        </select>
-    </div>
-    <div class="select-box">
-        <select name="city">
-        <option value="" disabled selected>شهر :</option>
-            <option value="city1">زنجان</option>
-            <option value="city2">تهران</option>
-            <!-- Add more cities as needed -->
-        </select>
-    </div>
-    <button class="search-button">جستجو</button>
-</div>
+    <form  method="GET">
+        <div class="search-box">
+            <input type="text" class="search-input" name="query" placeholder="جستجو در آگهی ها ...">
+            <div class="select-box">
+                <select name="category">
+                    <option value="" disabled selected>دسته بندی :</option>
+                    <option value="category1">وسایل نقلیه</option>
+                    <option value="category2">وسایل نقلیه</option>
+                    <!-- Add more categories as needed -->
+                </select>
+            </div>
+            <div class="select-box">
+                <select name="city">
+                    <option value="" disabled selected>شهر :</option>
+                    <option value="city1">زنجان</option>
+                    <option value="city2">تهران</option>
+                    <!-- Add more cities as needed -->
+                </select>
+            </div>
+            <button type="submit" class="search-button">جستجو</button>
+        </div>
+    </form>
         <div class="main-index-container Shabnam">
 
             <div class="title">
@@ -60,22 +67,37 @@ $adverts = $advert->alladvertShow();
                 </div>
             </div>
             <div class="cards Sahel">
-                <?php   if ($adverts !== false) {
-    foreach ($adverts as $advert) { ?>
-                <a href="advertsdetail.php?id=<?php echo $advert['AdvertID']; ?>">
-                    <div class="card">
-                        <img src="./uploads/<?php echo $advert['image']; ?>" alt="Denim Jeans" style="width:100%">
-                        <h3><?php echo $advert['Title']; ?></h3>
-                        <p class="card-price" id="amount"><?php echo $advert['Price']; ?>; <span
-                                class="toman">تومان</span></p>
-                        <p class="card-location"><?php echo $advert['City_ID']; ?></p>
-                        <p class="card-time">لحظاتی پیش</p>
-                        <!-- <p class="card-button"><button>جزییات بیشتر</button></p> -->
-                    </div>
-                </a>
-                <?php  }
-} ?>
-
+                <?php if (isset($searchResults) && $searchResults !== false) {
+                    // Display search results
+                    foreach ($searchResults as $result) { ?>
+                        <a href="advertsdetail.php?id=<?php echo $result['AdvertID']; ?>">
+                            <div class="card">
+                                <img src="./uploads/<?php echo $result['image']; ?>" alt="Denim Jeans" style="width:100%">
+                                <h3><?php echo $result['Title']; ?></h3>
+                                <p class="card-price" id="amount"><?php echo $result['Price']; ?>; <span class="toman">تومان</span></p>
+                                <p class="card-location"><?php echo $result['City_ID']; ?></p>
+                                <p class="card-time">لحظاتی پیش</p>
+                                <!-- <p class="card-button"><button>جزییات بیشتر</button></p> -->
+                            </div>
+                        </a>
+                    <?php }
+                } else {
+                    // Display default adverts
+                    if ($adverts !== false) {
+                        foreach ($adverts as $advert) { ?>
+                            <a href="advertsdetail.php?id=<?php echo $advert['AdvertID']; ?>">
+                                <div class="card">
+                                    <img src="./uploads/<?php echo $advert['image']; ?>" alt="Denim Jeans" style="width:100%">
+                                    <h3><?php echo $advert['Title']; ?></h3>
+                                    <p class="card-price" id="amount"><?php echo $advert['Price']; ?>; <span class="toman">تومان</span></p>
+                                    <p class="card-location"><?php echo $advert['City_ID']; ?></p>
+                                    <p class="card-time">لحظاتی پیش</p>
+                                    <!-- <p class="card-button"><button>جزییات بیشتر</button></p> -->
+                                </div>
+                            </a>
+                <?php }
+                    }
+                } ?>
             </div>
 
             <div class="buttom-show-more">
