@@ -52,7 +52,7 @@ if (isset($_POST['register_btn']))
         {
             redirect('ایمیل قبلا استفاده شده است', 'register.php');
         }else{
-            $register_query = $register->registration($username, $email, $mobile, $hashedpassword);
+            $register_query = $register->registration($username, $email, $mobile, $password);
             if ($register_query) {
                 redirect('ثبت نام با موفقیت انجام شذ', 'login.php');
             } else {
@@ -63,3 +63,4 @@ if (isset($_POST['register_btn']))
         redirect('Password and Confirm Password Does not match', 'register.php');
     }
 }
+

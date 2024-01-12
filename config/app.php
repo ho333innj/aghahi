@@ -11,6 +11,7 @@ define ('SITE_URL' , 'http://localhost/agahi/');
 
 include_once ('databaseConnection.php');
 $db = new databaseConnection;
+include('codes/authenticationCode.php');
 
 function base_url($slug) 
 {

@@ -1,5 +1,5 @@
 <?php 
-include('config/app.php');
+// include('config/app.php');
 
 
 class LoginController 
@@ -27,26 +27,29 @@ class LoginController
         }
     }
 
-    public function Login($email, $Password) 
+    public function Login($email, $password)
     {
-        $checkLogin = "SELECT * FROM users WHERE Email = '$email' LIMIT 1";
-        $result = $this->conn->query($checkLogin); 
-
+        $checkLogin = "SELECT * FROM users WHERE Email = ? LIMIT 1";
+        $stmt = $this->conn->prepare($checkLogin);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
-            $storedPassword = $data['Password'];
-
-            // Use password_verify to check if entered password matches the hashed password
-            if (password_verify($Password, $storedPassword)) {
+    
+            // Verify the entered password with the hashed password from the database
+            if (password_verify($password, $data['Password'])) { // Fix the column name here
                 $this->userAuthentication($data);
-                return true;
+                return true; // Successful login
             } else {
                 return false; // Password does not match
             }
-        } else {   
+        } else {
             return false; // User not found
         }
     }
+    
 
     
     
@@ -57,10 +60,10 @@ class LoginController
         // ٫٫ $_SESSION['auth_role'] $data['role_as']; 
         $_SESSION['auth_user']=
         [
-        'user_id' => $data['id'], 
-        'user fname' => $data['fname'], 
-        'user_Iname' => $data['name'], 
-        'user_email' => $data['email']
+        'user_id' => $data['UserID'], 
+        'user_name' => $data['UserName']
+        // 'user_Iname' => $data['name'], 
+        // 'user_email' => $data['email']
         ];
 
     

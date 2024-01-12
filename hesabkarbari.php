@@ -1,12 +1,18 @@
 <?PHP 
-include('codes/authenticationCode.php');
-include('controller/AuthenticationController.php');
-if (session_status() === PHP_SESSION_NONE)
- {
+include('controller/authenticationController.php');
+include('controller/advertController.php');
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
- }
-        $authenticated->IsLoggedIn();
-        ?>
+}
+// include('codes/AdvertCode.php');
+
+$data = $authenticated->authDetail();
+$user_id = $data['UserID'];
+$UserName=$data['UserName'];
+
+$adverts= $advert->advertShow($user_id);
+
+?>
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -16,6 +22,8 @@ if (session_status() === PHP_SESSION_NONE)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سایت آگهی و فروش nj</title>
     <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/login.css">
+
 </head>
 
 <body>
@@ -27,32 +35,34 @@ if (session_status() === PHP_SESSION_NONE)
         <div class="main-container Shabnam">
 
             <div class="topprofile_index">
+
                 <div class="tp_lists">
                     <ul>
                         <li>
-                        <img src="./assets/img/icons8-home-50 (2).png">
+                       <a href="index.php"><img src="./assets/img/icons8-home-50 (2).png"> </a> 
                         </li>
                         <span class="text-w">|</span>
                         <li>
-                            <a>حساب من</a>
+                            <a href="hesabkarbari.php">حساب من</a>
                         </li>
                         <span class="text-w">|</span>
 
                         <li>
-                            <a>آگهی های من</a>
+                            <a href="editProfile.php">پروفایل</a>
                         </li>
                     </ul>
                 </div>
                 <div class="tp_geetingandlogout">
-                    <p class="text-w">خوش آمدید : حسین جان</p>
+                    <p class="text-w"> خوش آمدید : <?php echo $UserName; ?></p>
                     <form method="POST">
                         <input type="submit" value="خروج" name="logout_btn">
                     </form>
                 </div>
             </div>
+
             <div class="middleprofile d-flex">
                 <div class="profile_img">
-                <img src="./assets/img/gtr.jpg">
+                <img  src="<?php echo isset($data['Image']) ? './uploads/profile/' . $data['Image'] : './assets/img/user.png'; ?>">
                 </div>
                 <div class="ad_count_num d-flex">
                     <div class="count_image">
@@ -62,25 +72,55 @@ if (session_status() === PHP_SESSION_NONE)
                     </div>
                     <div>
                         <p>تعداد آگهی های من :</p>
-                        <p>0</p>
+                        <p>
+                        <?php echo is_array($adverts) ? count($adverts) : 0; ?>
+                        </p>
                     </div>
                     
                 </div>
 
             </div>
-            <div class="adverts_cards">
-                    <div class="ad_cr_title">
-                        <h1>آگهی های من</h1>
-                    </div>
-                    <div class="no_ad_image">
-                        <img src="./assets/img/—Pngtree—no result search icon_6511543.png" >
-                        <a herf="#">ثبت آگهی جدید</a>
 
-                    </div>
-            </div>
           
-        </div>
+
+        <div class="adverts_cards">
+            <div class="ad_cr_title">
+                <h1>آگهی های من</h1>
+            </div>
+    <div class="main-index-container">
+    <div class="cards Sahel">
+    <?php if (is_array($adverts) && count($adverts) > 0) {
+        foreach ($adverts as $advert) { ?>
+            <div class="card">
+                <a href="profile-advertdetail.php?id=<?php echo $advert['AdvertID']; ?>">
+                    <div>
+                        <img src="./uploads/<?php echo $advert['image']; ?>" alt="Denim Jeans" style="width:100%">
+                        <h3><?php echo $advert['Title']; ?></h3>
+                        <p class="card-price" id="amount"><?php echo $advert['Price']; ?>; <span class="toman">تومان</span></p>
+                        <p class="card-location"><?php echo $advert['City_ID']; ?></p>
+                        <p class="card-time">لحظاتی پیش</p>
+                    </div>
+                    
+                </a>
+            </div>
+        <?php }
+        
+    } else { ?>
     </div>
-    <?php  include __DIR__."/views/templates/footer.php";?>  
+
+</div>
+        <div class="no_ad_image">
+            <img src="./assets/img/—Pngtree—no result search icon_6511543.png">
+            <a href="<?php echo base_url('insertAdvert.php'); ?>">ثبت آگهی جدید</a>
+        </div>
+    <?php } ?>
+
+
+    
+            
+        </div>
+          
+    </div>
+<?php  include __DIR__."/views/templates/footer.php";?>  
 </body>
 </html>

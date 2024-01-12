@@ -1,7 +1,4 @@
-
-<?php 
-
-// include('config/app.php'); 
+<?php
 
 class RegisterController
  {
@@ -10,38 +7,20 @@ class RegisterController
         $db = new DatabaseConnection; 
         $this->conn = $db->conn; 
     } 
-    
-    // public function registration($username, $email, $mobile, $hashedpassword) 
-    // {
-    //     $register_query = "INSERT INTO `users` (`UserName`, `Email`, `Mobile`,`Password`) VALUES ('$username', '$email', '$mobile' , '$hashedPassword')";
-    //     $result = $this->conn->query($register_query);
-       
-    //     return $result; 
-    // }
-    public function registration($username, $email, $phone, $hashedpassword) 
+
+    public function registration($username, $email, $phone, $password)
     {
-        $register_query = "INSERT INTO `users` (`UserName`, `Email`, `Mobile`, `password`) VALUES (?, ?, ?, ?)";
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        $register_query = "INSERT INTO `users` (`UserName`, `Email`, `Mobile`, `Password`) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($register_query);
-        $stmt->bind_param("ssss", $username, $email, $phone, $hashedpassword);
+        $stmt->bind_param("ssss", $username, $email, $phone, $hashedPassword);
         $result = $stmt->execute();
         $stmt->close();
 
         return $result;
     }
 
-   
-    // public function isUserExists($email) 
-    // {
-    //         $checkUniqueUser = "SELECT Email FROM users WHERE Email = '$email' LIMIT 1";
-    //         $result = $this->conn->query($checkUniqueUser);
-    //         if($result->num_rows > 0)
-    //         {
-    //             return true;
-    //         }
-    //         else{
-    //             return false;
-    //         }
-    // }
     public function isUserExists($email) 
     {
         $checkUniqueUser = "SELECT email FROM users WHERE email = ? LIMIT 1";
@@ -65,7 +44,6 @@ class RegisterController
         // ($password === $password_C)
         { 
             return true;
-
         }
         else
         {

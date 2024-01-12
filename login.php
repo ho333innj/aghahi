@@ -1,5 +1,6 @@
-<?PHP include('codes/authenticationCode.php');?>
-
+<?php 
+include('config/app.php'); 
+?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -14,15 +15,7 @@
 <body>
     <?php include __DIR__ . "../views/templates/header.php"; ?>
 
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>فرم ورود</title>
-        <link rel="stylesheet" href="styles.css"> <!-- اتصال به فایل CSS -->
-    </head>
-
-    <body>
+ 
         <div class="login">
 
             <div class="form-half">
@@ -47,13 +40,6 @@
                 <img src="./assets/img/greens.png" alt="عکس">
             </div>
         </div>
-
-    </body>
-
-
-    </html>
-
-
     <?php include __DIR__ . "../views/templates/footer.php"; ?>
 </body>
 
