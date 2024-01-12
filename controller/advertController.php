@@ -84,7 +84,20 @@ class AdvertController
         } else {
             return false; // User not found
         }
-    }    
+    }
+    public function getCityNameById($cityID)
+    {
+        // Assuming you have a table named 'cities'
+        $getCityName = "SELECT CityName FROM cities WHERE CityID = '$cityID' LIMIT 1";
+        $result = $this->conn->query($getCityName);
+
+        if ($result->num_rows > 0) {
+            $city = $result->fetch_assoc();
+            return $city['CityName'];
+        } else {
+            return 'نامشخص'; // You can set a default value if the city is not found
+        }
+    }
     public function deleteAdvert( $advertIDToDelete)
     {
         $deleteAdvert = "DELETE FROM adverts WHERE AdvertID = ' $advertIDToDelete'";

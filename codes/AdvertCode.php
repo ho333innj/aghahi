@@ -6,6 +6,42 @@ $data = $authenticated->authDetail();
 
 
 $advert = new AdvertController;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adAdvert_btn'])) {
+    // Sample data (replace with actual data from your form)
+    $city_id = validateInput($advert->conn, $_POST['city']);
+    $category_id = validateInput($advert->conn, $_POST['category']);
+    $title = validateInput($advert->conn, $_POST['title']);
+    $description = validateInput($advert->conn, $_POST['description']);
+    $price = validateInput($advert->conn, $_POST['price']);
+
+    // Check if an image is provided
+    if (!empty($_FILES['image']['name'])) {
+        $image = basename($_FILES['image']['name']);
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
+        // Move the uploaded file
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            // Insert the new advertisement into the database
+            $result = $advert->insertAdvert($city_id, $data['UserID'], $category_id, $title, $description, $price, $image);
+
+            if ($result) {
+                redirect('آگهی با موفقیت ثبت شد', 'hesabkarbari.php');
+            } else {
+                redirect('خطا در ثبت آگهی', 'insertadvert.php');
+            }
+        } else {
+            // Handle the case where the file upload fails
+            redirect('آپلود تصویر ناموفق بود', 'insertadvert.php');
+        }
+    } else {
+        // Handle the case where no image is provided
+        redirect('تصویری انتخاب نشده است', 'insertadvert.php');
+    }
+}
+
+
 if (isset($_POST['editAdvert_btn'])) {
     $advertID = validateInput($db->conn, $_POST['editAdvertID']);
 

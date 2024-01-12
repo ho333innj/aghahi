@@ -60,7 +60,7 @@ $adverts = $advert->alladvertShow();
 
             <div class="title">
                 <div class="title-icon">
-                <img src="./assets/img/kisspng-gray-wolf-moon-coyote-red-wolf-clip-art-wolf-5ab44881d4b9a9.0979797015217644818713.png">
+                <img  src="./assets/img/kisspng-wolf-logo-esports-clip-art-league-of-legends-5b9a61e8222047.6161969715368442641398.png">
                 </div>
                 <div class="title-text">
                     <h3>آگهی های جدید در همه ی ایران</h3>
@@ -74,7 +74,7 @@ $adverts = $advert->alladvertShow();
                             <div class="card">
                                 <img src="./uploads/<?php echo $result['image']; ?>" alt="Denim Jeans" style="width:100%">
                                 <h3><?php echo $result['Title']; ?></h3>
-                                <p class="card-price" id="amount"><?php echo $result['Price']; ?>; <span class="toman">تومان</span></p>
+                                <p class="card-price" id="amount">قیمت : <?php echo $result['Price']; ?></p>
                                 <p class="card-location"><?php echo $result['City_ID']; ?></p>
                                 <p class="card-time">لحظاتی پیش</p>
                                 <!-- <p class="card-button"><button>جزییات بیشتر</button></p> -->
@@ -85,12 +85,12 @@ $adverts = $advert->alladvertShow();
                     // Display default adverts
                     if ($adverts !== false) {
                         foreach ($adverts as $advert) { ?>
-                            <a href="advertsdetail.php?id=<?php echo $advert['AdvertID']; ?>">
+                            <a href="advertsdetail.php?id=<?php  echo $advert['AdvertID']; ?>">
                                 <div class="card">
                                     <img src="./uploads/<?php echo $advert['image']; ?>" alt="Denim Jeans" style="width:100%">
                                     <h3><?php echo $advert['Title']; ?></h3>
-                                    <p class="card-price" id="amount"><?php echo $advert['Price']; ?>; <span class="toman">تومان</span></p>
-                                    <p class="card-location"><?php echo $advert['City_ID']; ?></p>
+                                    <p class="card-price" id="card-price">قیمت :  <?php  echo $advert['Price']; ?> </p>
+                                <p class="card-location"><?php echo $advert['City_ID']; ?></p>
                                     <p class="card-time">لحظاتی پیش</p>
                                     <!-- <p class="card-button"><button>جزییات بیشتر</button></p> -->
                                 </div>
@@ -99,7 +99,6 @@ $adverts = $advert->alladvertShow();
                     }
                 } ?>
             </div>
-
             <div class="buttom-show-more">
                 <form action="#">
                     <button>نمایش بیشتر</button>

@@ -5,9 +5,9 @@
     
     <div class="logo-header d-flex">
         <div class="logo-image">
-            <img src="./assets/img/kisspng-gray-wolf-moon-coyote-red-wolf-clip-art-wolf-5ab44881d4b9a9.0979797015217644818713.png">
+            <img  src="./assets/img/kisspng-wolf-logo-esports-clip-art-league-of-legends-5b9a61e8222047.6161969715368442641398.png">
         </div>
-        <div class="logo-text Shabnam">
+        <div class="logo-text">
             <a href="<?php echo base_url('index.php'); ?>">آگهی وفروش </a>
         </div>
     </div>
