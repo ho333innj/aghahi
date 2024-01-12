@@ -1,5 +1,9 @@
 <?php 
-include('config/app.php'); 
+include('controller/authenticationController.php');
+$access = $authenticated->IsLoggedIn();
+if($access){
+    redirect('شما لاگین شده اید' , 'hesabkarbari.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">

@@ -1,5 +1,9 @@
 <?php 
-include('config/app.php'); 
+include('controller/authenticationController.php');
+$access = $authenticated->IsLoggedIn();
+if($access){
+    redirect('شما لاگین شده اید. برای ثبت نام جدید لطفا از حساب کاربری خود خارج شوید' , 'hesabkarbari.php');
+}
 ?>
 
 <!DOCTYPE html>

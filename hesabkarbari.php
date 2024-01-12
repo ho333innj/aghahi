@@ -1,4 +1,5 @@
 <?PHP 
+
 include('controller/authenticationController.php');
 include('controller/advertController.php');
 if (session_status() === PHP_SESSION_NONE) {
@@ -25,7 +26,7 @@ $adverts= $advert->advertShow($user_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سایت آگهی و فروش nj</title>
     <link rel="stylesheet" href="./assets/style/style.css">
-    <link rel="stylesheet" href="./assets/style/login.css">
+    <!-- <link rel="stylesheet" href="./assets/style/login.css"> -->
 
 </head>
 
