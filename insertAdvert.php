@@ -38,25 +38,46 @@ if (!$authenticated->IsLoggedIn()) {
                     <input type="text" id="title" name="title" required>
                 </div>
 
-                <div class="form-group selects">
-                    <div>
-                        <label for="category">گروه آگهی:</label>
-                        <select id="category" name="category" required>
-                            <option value="1">لوازم خانگی</option>
-                            <option value="2">وسایل نقلیه</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
 
-                    <div>
-                        <label for="city">استان:</label>
-                        <select id="city" name="city" required>
-                            <option value="1">زنجان</option>
-                            <option value="2">تهران</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
+
+             <div class="form-group selects">
+                <div>
+                    <label for="category">گروه آگهی:</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>انتخاب کنید...</option>
+                        <?php
+                        // Fetch categories dynamically from the database
+                        $categories = $advert->getCategories();
+                        if (!empty($categories)) {
+                            foreach ($categories as $category) {
+                                echo '<option value="' . $category['CategoryID'] . '">' . $category['CategoryName'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No categories available</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
+
+                <div>
+                    <label for="city">استان:</label>
+                    <select id="city" name="city" required>
+                        <option value="" disabled selected>انتخاب کنید...</option>
+                        <?php
+                        // Fetch cities dynamically from the database
+                        $cities = $advert->getCities();
+                        if (!empty($cities)) {
+                            foreach ($cities as $city) {
+                                echo '<option value="' . $city['CityID'] . '">' . $city['CityName'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No cities available</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+
 
                 <div class="form-group">
                     <label for="price">قیمت:</label>

@@ -2,6 +2,8 @@
 // include('config/app.php');
 class AdvertController
 {
+    public $conn;
+    
     public function __construct() 
     {
         
@@ -14,11 +16,10 @@ class AdvertController
         // Assuming you have a table named 'adverts'
         $insertadvert = "INSERT INTO `adverts` (`city_id`, `user_id`, `category_id`, `title`, `description`, `price`, `image`) 
                   VALUES ('$city_id', '$user_id', '$category_id', '$title', '$description', '$price', '$image')";
-       
-       $result= $this->conn->query($insertadvert); 
-
-        if ($result)
-         {
+    
+        $result = $this->conn->query($insertadvert);
+    
+        if ($result) {
             return true;
         } else {
             return false;
@@ -95,6 +96,8 @@ class AdvertController
             $city = $result->fetch_assoc();
             return $city['CityName'];
         } else {
+            echo "City not found for ID: $cityID"; // Debugging statement
+
             return 'نامشخص'; // You can set a default value if the city is not found
         }
     }
@@ -128,10 +131,45 @@ class AdvertController
         return false; // Update failed
     }
 }
+public function searchAndFilterAdverts($searchQuery, $categoryId, $cityId)
+{
+    $query = "SELECT * FROM adverts WHERE 1";
+
+    // Add search condition
+    if ($searchQuery) {
+        $query .= " AND (Title LIKE '%$searchQuery%' OR Description LIKE '%$searchQuery%')";
+    }
+
+    // Add category and city conditions
+    if ($categoryId) {
+        $query .= " AND Category_ID = '$categoryId'";
+    }
+
+    if ($cityId) {
+        $query .= " AND City_ID = '$cityId'";
+    }
+
+    $result = $this->conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $searchAndFilterResults = array();
+
+        // Fetch each row as an associative array
+        while ($advert = $result->fetch_assoc()) {
+            // Append the row to the array
+            $searchAndFilterResults[] = $advert;
+        }
+
+        return $searchAndFilterResults;
+    } else {
+        return false; // No matching adverts found
+    }
+}
+
 public function searchAdverts($searchQuery)
 {
     // Assuming you have a table named 'adverts'
-    $searchAdverts = "SELECT * FROM adverts WHERE title LIKE '%$searchQuery%' OR description LIKE '%$searchQuery%'";
+    $searchAdverts = "SELECT * FROM adverts WHERE Title LIKE '%$searchQuery%' OR Description LIKE '%$searchQuery%'";
     $result = $this->conn->query($searchAdverts);
 
     if ($result->num_rows > 0) {
@@ -144,10 +182,82 @@ public function searchAdverts($searchQuery)
         }
 
         return $searchResults;
-    } else {
-        return false; // No results found
+    } 
+    else {
+        return false;
     }
 }
+public function filterAdvertsByCategoryAndCity($categoryId, $cityId)
+{
+    $filterQuery = "SELECT * FROM adverts WHERE 1";
+
+    if ($categoryId) {
+        $filterQuery .= " AND Category_ID = '$categoryId'";
+    }
+
+    if ($cityId) {
+        $filterQuery .= " AND City_ID = '$cityId'";
+    }
+
+    $result = $this->conn->query($filterQuery);
+
+    if ($result->num_rows > 0) {
+        $filterresult = array();
+
+        // Fetch each row as an associative array
+        while ($filter = $result->fetch_assoc()) {
+            // Append the row to the array
+            $filterresult[] = $filter;
+        }
+
+        return $filter;
+    } else {
+        return false; // No matching adverts found
+    }
+}
+
+public function getCategories()
+{
+    // Assuming you have a table named 'categories'
+    $getCategories = "SELECT * FROM categories";
+    $result = $this->conn->query($getCategories);
+
+    if ($result->num_rows > 0) {
+        $categories = array();
+
+        // Fetch each row as an associative array
+        while ($category = $result->fetch_assoc()) {
+            // Append the row to the array
+            $categories[] = $category;
+        }
+
+        return $categories;
+    } else {
+        return array(); // Return an empty array if no categories found
+    }
+}
+public function getCities()
+{
+    // Assuming you have a table named 'cities'
+    $getCities = "SELECT * FROM cities";
+    $result = $this->conn->query($getCities);
+
+    if ($result->num_rows > 0) {
+        $cities = array();
+
+        // Fetch each row as an associative array
+        while ($city = $result->fetch_assoc()) {
+            // Append the row to the array
+            $cities[] = $city;
+        }
+
+        return $cities;
+    } else {
+        return array(); // Return an empty array if no cities found
+    }
+}
+
+
    
     
 }

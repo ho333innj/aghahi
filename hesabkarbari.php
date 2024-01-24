@@ -100,8 +100,7 @@ $adverts= $advert->advertShow($user_id);
                     <div>
                         <img src="./uploads/<?php echo $advert['image']; ?>" alt="Denim Jeans" style="width:100%">
                         <h3><?php echo $advert['Title']; ?></h3>
-                        <p class="card-price" id="amount"><?php echo $advert['Price']; ?>; <span class="toman">تومان</span></p>
-                        <p class="card-location"><?php echo $advert['City_ID']; ?></p>
+                        <p class="card-price" id="amount">قیمت :<?php echo $advert['Price']; ?><span style="margin-right:5px;"> تومان  </span></p>
                         <p class="card-time">لحظاتی پیش</p>
                     </div>
                     

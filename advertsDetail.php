@@ -2,11 +2,8 @@
 include 'controller/authenticationController.php';
 
 $data = (isset($_SESSION['authenticated'])) ? $authenticated->authDetail() : "";
-if (!$authenticated->IsLoggedIn()) {
-    // Redirect to the login page or any other page you prefer
-    redirect("لطفاً وارد شوید", "login.php");
-}
-// Check if session is not started, then start it
+
+// // Check if session is not started, then start it
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

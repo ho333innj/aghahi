@@ -4,6 +4,7 @@ include('config/app.php');
 class AuthenticationController 
 
 {
+    public $conn;
     public function __construct() 
     {
          $db = new databaseConnection;

@@ -1,6 +1,8 @@
 <?php 
 class databaseConnection
 {
+    public $conn; // Declare the property with the public keyword
+
     public function __construct()
     {
         $conn = new mysqli(DB_HOST  ,DB_USER ,DB_PASSWORD ,DB_DATABASE);
@@ -8,6 +10,6 @@ class databaseConnection
         {
             die('<h1>database connection failed</h1>');
         }
-        return $this->conn = $conn;
+        $this->conn = $conn;
     }
 }

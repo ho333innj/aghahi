@@ -2,6 +2,7 @@
 
 class RegisterController
  {
+    public $conn;
     public function __construct()
     {
         $db = new DatabaseConnection; 

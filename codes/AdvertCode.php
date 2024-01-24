@@ -7,6 +7,7 @@ $data = $authenticated->authDetail();
 
 $advert = new AdvertController;
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adAdvert_btn'])) {
     // Sample data (replace with actual data from your form)
     $city_id = validateInput($advert->conn, $_POST['city']);

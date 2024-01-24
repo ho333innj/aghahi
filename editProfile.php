@@ -42,7 +42,7 @@ $data = $authenticated->authDetail();
             
                 <div class="middleprofile d-flex">
                     <div class="profile_img">
-                    <img src="./uploads/profile/<?php echo $data['Image']; ?>">
+                    <img  src="<?php echo isset($data['Image']) ? './uploads/profile/' . $data['Image'] : './assets/img/user.png'; ?>">
                     </div>
                 </div>
         </div>
@@ -56,9 +56,15 @@ $data = $authenticated->authDetail();
                     <form method="POST" enctype="multipart/form-data">
                         <div class="advert_insert_form Shabnam">
                             <div class="in_ad_right">
+                           
                                 <div class="form-group">
                                     <label for="username">نام ونام خانوادگی :</label>
                                     <input type="text" id="username" name="username" required  value="<?php echo isset($data['UserName']) ? $data['UserName'] : ''; ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"> ایمیل :</label>
+                                    <input type="email" id="email" name="email" required  value="<?php echo isset($data['Email']) ? $data['Email'] : ''; ?>">
 
                                 </div>
                                 <div class="form-group">
@@ -68,7 +74,7 @@ $data = $authenticated->authDetail();
 
                                 <div class="form-group">
                                     <label for="address">آدرس :</label>
-                                    <textarea id="address" name="address" rows="4" required ><?php echo isset($data['address']) ? $data['address'] : ''; ?></textarea>
+                                    <textarea id="address" name="address" rows="4" ><?php echo isset($data['address']) ? $data['address'] : ''; ?></textarea>
                                 </div>
                             </div>
 
@@ -79,11 +85,11 @@ $data = $authenticated->authDetail();
                                 <div class="file-upload" onclick="triggerFileInput()">
                                 <div>
                                 <!-- Hidden file input -->
-                                <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage()">
+                                <input type="file" id="image" name="image" accept="image/*"  onchange="previewImage()">
                                 </div>
-                                <div class="image-preview" id="image-preview">
+                                <div class="image-preview-2" id="image-preview">
                                     <img id="preview-image" src="./uploads/profile/<?php echo $data['Image']; ?>" alt="Preview">
-                                    <span id="file-choose"><?php echo empty($data['Image']) ? 'افزودن عکس +' : 'تغییر تصویر'; ?></span>
+                                    <!-- <span id="file-choose"></span> -->
                                 </div>
                                 </div>
 
